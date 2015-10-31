@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>D3 Page Template</title>
+<script type="text/javascript" src="d3.js"></script>
+<style type="text/css">
+    
+    div.bar {
+        display: inline-block;
+        width: 20px;
+        height: 75px; /* Gets overriden by D3-assigned height below */
+        background-color: black;
+        margin-right: 2px;
+      }
+    
+    </style>
+</head>
+
+<body>
+<script type="text/javascript">
+  // Reading in CSV data
+  var dataset;
+  d3.csv("mtcars.csv", function(data){
+    dataset = data;
+    console.log(data);
+  d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar")
+        .style("height", function(d) {
+          var barHeight = d * 5;
+          return barHeight + "px";
+        });
+  });
+
+  // Read in JSON data
+  // var dataset;
+  // d3.json("mtcars.json", function(data){
+  //   dataset = data;
+  //   console.log(dataset);
+  // });
+
+
+</script>
+</body>
+</html>
