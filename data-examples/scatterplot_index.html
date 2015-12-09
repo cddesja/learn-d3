@@ -21,19 +21,35 @@
 <script type="text/javascript">
   // Reading in CSV data
   var dataset;
+  var w = 500;
+  var h = 100;
   d3.csv("mtcars.csv", function(data){
     dataset = data;
     console.log(data);
-  d3.select("body").selectAll("div")
-        .data(dataset)
-        .enter()
-        .append("div")
-        .attr("class", "bar")
-        .style("height", function(d) {
-          var barHeight = d * 5;
-          return barHeight + "px";
-        });
   });
+
+  var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+
+  // Set up the Xaxis
+  var Xaxis = d3.svg.axis()
+              .scale(Xscale)
+              .orient("bottom");
+
+  svg.selectAll("circle")
+            .data(dataset)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d){
+              return d[0];
+            })
+            .attr("cy", function(d){
+              return d[1];
+            })
+
 
   // Read in JSON data
   // var dataset;

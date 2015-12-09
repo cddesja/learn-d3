@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>D3 Page Template</title>
+<script type="text/javascript" src="d3.js"></script>
+<style type="text/css">
+    
+    div.bar {
+        display: inline-block;
+        width: 20px;
+        height: 75px; /* Gets overriden by D3-assigned height below */
+        background-color: black;
+        margin-right: 2px;
+      }
+    
+    </style>
+</head>
+
+<body>
+<script type="text/javascript">
+  // Reading in CSV data
+  var dataset;
+  var w = 500;
+  var h = 100;
+  d3.csv("mtcars.csv", function(data){
+    dataset = data;
+    console.log(data);
+  });
+
+  var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+  svg.selectAll("circle")
+            .data(dataset)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d){
+              return d[0];
+            })
+            .attr("cy", function(d){
+              return d[1];
+            })
+
+
+  // Read in JSON data
+  // var dataset;
+  // d3.json("mtcars.json", function(data){
+  //   dataset = data;
+  //   console.log(dataset);
+  // });
+
+
+</script>
+</body>
+</html>
